@@ -1,8 +1,6 @@
 <?php
 /*
  * Filename : Frello_Helper.php
- * Purpose : Example/Guide on how to send SMSes via the Frello API (v4). The API is restful and documentation is available online at
- *           http://docs.frello.co.zw/v4
  *
  * Dependencies : cURL.
  *
@@ -15,6 +13,7 @@ class Frello{
     var $app_id, $app_secret;
     var $result;
     var $api_base_url = 'http://api.frello.co.zw/v4';
+
     function Frello($app_id, $app_secret){
         $this->app_id = $app_id;
         $this->app_secret = $app_secret;
