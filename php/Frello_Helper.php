@@ -45,6 +45,8 @@ class Frello{
         //authentication via http
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //uncomment the following line if your internet connection is proxied.
+//        curl_setopt($ch, CURLOPT_PROXY,"proxy:port");
 
         switch($request_method){
             case 'PUT':
