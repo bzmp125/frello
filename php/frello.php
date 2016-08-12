@@ -23,7 +23,8 @@ $frello = new Frello(APP_ID,APP_SECRET);
 //To send an sms to a number, make sure the number begins with the country code and does not have '00' or '+' appended to it
 
 $message = "This is a test message.";
-$to = "263*********";           //263 is the country code for Zimbabwe
+//you can send to multiple numbers by concatenating them using a comma
+$to = "263*********,263*********";           //263 is the country code for Zimbabwe
 
 //Then use the send_message method to send a single message
 
