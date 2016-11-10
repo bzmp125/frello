@@ -34,7 +34,7 @@ class Frello{
 
     //sending a template message to a list 
     
-    function send_template_sms_to_list($template_id,$list_id,$variables, $message, $from=null){
+    function send_template_sms_to_list($template_id,$list_id,$variables, $from=null){
         if($from && strlen($from)>11){
             $from = substr($from,0,11);
         }
@@ -42,14 +42,13 @@ class Frello{
         $data = $variables;
         $data['list_id'] = $list_id;
         $data['from']= $from;
-        $data['message'] = $message;
         $this->result = $this->send_request($url, "POST", [],$data, true);
         return ($this->result->success && $this->result->message=="MESSAGE SENT TO LIST.");
     }
 
     //sending a template message to a single number 
 
-    function send_template_sms_to_single($template_id,$variables, $message,$to, $from=null){
+    function send_template_sms_to_single($template_id,$to,$variables, $from=null){
         if($from && strlen($from)>11){
             $from = substr($from,0,11);
         }
@@ -57,7 +56,6 @@ class Frello{
         $data = $variables;
         $data['to'] = $to;
         $data['from']= $from;
-        $data['message'] = $message;
         $this->result = $this->send_request($url, "POST", [],$data, true);
         return ($this->result->success && $this->result->message=="MESSAGE SENT.");
     }
