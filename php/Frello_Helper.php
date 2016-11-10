@@ -32,6 +32,36 @@ class Frello{
         return ($this->result->success && $this->result->message=="MESSAGE SENT.");
     }
 
+    //sending a template message to a list 
+    
+    function send_template_sms_to_list($template_id,$list_id,$variables, $message, $from=null){
+        if($from && strlen($from)>11){
+            $from = substr($from,0,11);
+        }
+        $url = $this->api_base_url."/templates/$template_id?app_id=".$this->app_id."&app_secret=".base64_encode($this->app_secret);
+        $data = $variables;
+        $data['list_id'] = $list_id;
+        $data['from']= $from;
+        $data['message'] = $message;
+        $this->result = $this->send_request($url, "POST", [],$data, true);
+        return ($this->result->success && $this->result->message=="MESSAGE SENT TO LIST.");
+    }
+
+    //sending a template message to a single number 
+
+    function send_template_sms_to_single($template_id,$variables, $message,$to, $from=null){
+        if($from && strlen($from)>11){
+            $from = substr($from,0,11);
+        }
+        $url = $this->api_base_url."/templates/$template_id?app_id=".$this->app_id."&app_secret=".base64_encode($this->app_secret);
+        $data = $variables;
+        $data['to'] = $to;
+        $data['from']= $from;
+        $data['message'] = $message;
+        $this->result = $this->send_request($url, "POST", [],$data, true);
+        return ($this->result->success && $this->result->message=="MESSAGE SENT.");
+    }
+
     function send_request($url, $method, $headers, $data, $json){
         $params = array();
         $request_method =$method;
