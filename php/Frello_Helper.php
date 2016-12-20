@@ -39,7 +39,6 @@ class Frello{
             $from = substr($from,0,11);
         }
         $url = $this->api_base_url."/lists/$list_id/send?app_id=".$this->app_id."&app_secret=".base64_encode($this->app_secret);
-        $data['to'] = $to;    
         $data['from']= $from;
         $data['message'] = $message;
         $this->result = $this->send_request($url, "POST", [],$data, true);
