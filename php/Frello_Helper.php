@@ -74,7 +74,7 @@ class Frello{
     }
     //sending a template message to a multiple numbers
 
-    function send_template_sms_to_single($template_id,$to,$variables, $from=null){ 
+    function send_template_sms_to_multiple($template_id,$to,$variables, $from=null){ 
         //$to is a comma-separated string of valid numbers
         if($from && strlen($from)>11){
             $from = substr($from,0,11);
