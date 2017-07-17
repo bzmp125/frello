@@ -72,6 +72,20 @@ class Frello{
         $this->result = $this->send_request($url, "POST", [],$data, true);
         return ($this->result->success && $this->result->message=="MESSAGE SENT.");
     }
+    //sending a template message to a multiple numbers
+
+    function send_template_sms_to_single($template_id,$to,$variables, $from=null){ 
+        //$to is a comma-separated string of valid numbers
+        if($from && strlen($from)>11){
+            $from = substr($from,0,11);
+        }
+        $url = $this->api_base_url."/templates/$template_id?app_id=".$this->app_id."&app_secret=".base64_encode($this->app_secret);
+        $data = $variables;
+        $data['to'] = $to;
+        $data['from']= $from;
+        $this->result = $this->send_request($url, "POST", [],$data, true);
+        return ($this->result->success && $this->result->message=="MESSAGE SENT.");
+    }
 
     function send_request($url, $method, $headers, $data, $json){
         $params = array();
